@@ -2,6 +2,7 @@ package ma.pfe.services;
 
 import ma.pfe.dtos.StudentDto;
 import ma.pfe.entities.StudentEntity;
+import ma.pfe.entities.StudentId;
 import ma.pfe.mappers.StudentMapper;
 import ma.pfe.repositories.StudentRepository;
 import org.slf4j.Logger;
@@ -36,15 +37,16 @@ public class StudentServiceImpl implements StudentService {
     public Boolean update(StudentDto dto) {
         LOGGER.debug("start methode update");
         StudentEntity e= studentMapper.convertToEntity(dto);
-        studentRepository.findById(e.getStudentId().getId()).orElseThrow(RuntimeException::new);
+        studentRepository.findById(e.getStudentId());
         e = studentRepository.save(e);
         return true;
     }
 
     @Override
-    public Boolean deleteById(Long id) {
+    public Boolean deleteById(Long id, String code) {
         LOGGER.debug("start methode delete");
-        studentRepository.deleteById(id);
+        StudentId studentId = new StudentId(id,code);
+        studentRepository.deleteById(studentId);
         return true;
     }
 

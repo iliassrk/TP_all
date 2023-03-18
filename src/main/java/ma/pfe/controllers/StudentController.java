@@ -28,10 +28,10 @@ public class StudentController {
         return service.update(dto);
     }
 
-    @DeleteMapping("/{ids}")
-    public boolean delete(@PathVariable("ids")Long id) {
+    @DeleteMapping("/{ids}/{code}")
+    public boolean delete(@PathVariable("ids")Long id,@PathVariable("code")String code) {
         LOGGER.debug("start methode delete",id);
-        return service.deleteById(id);
+        return service.deleteById(id,code );
     }
 
     @GetMapping
