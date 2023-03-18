@@ -29,14 +29,14 @@ public class StudentServiceImpl implements StudentService {
         LOGGER.debug("start methode save");
         StudentEntity e = studentMapper.convertToEntity(dto);
         e = studentRepository.save(e);
-        return e.getId();
+        return e.getStudentId().getId();
     }
 
     @Override
     public Boolean update(StudentDto dto) {
         LOGGER.debug("start methode update");
         StudentEntity e= studentMapper.convertToEntity(dto);
-        studentRepository.findById(e.getId()).orElseThrow(RuntimeException::new);
+        studentRepository.findById(e.getStudentId().getId()).orElseThrow(RuntimeException::new);
         e = studentRepository.save(e);
         return true;
     }

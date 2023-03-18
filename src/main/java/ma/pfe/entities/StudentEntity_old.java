@@ -1,24 +1,23 @@
-package ma.pfe.entities;
+/*package ma.pfe.entities;
 
 import javax.persistence.*;
 
-// @Embeddable @EmbeddedId
 @Entity
-@Table(name = "Student_test")
+@Table(name = "T_STUDENTTT")
 public class StudentEntity {
-
-    @EmbeddedId
+    @Embedded
     private StudentId studentId;
-
+    private Adresse adresse;
     @Column(name = "name_student")
     private String name;
 
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name="rue",column = @Column(name = "rue_student")),
-            @AttributeOverride(name="avenue",column = @Column(name = "avenue_student"))
-    })
-    private Adresse adresse;
+    public StudentId getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(StudentId studentId) {
+        this.studentId = studentId;
+    }
 
     public Adresse getAdresse() {
         return adresse;
@@ -28,13 +27,12 @@ public class StudentEntity {
         this.adresse = adresse;
     }
 
-    public StudentId getStudentId() {
-        return studentId;
-    }
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="rue",column = @Column(name = "rue_student")),
+            @AttributeOverride(name="avenue",column = @Column(name = "avenue_student"))
+    })
 
-    public void setStudentId(StudentId studentId) {
-        this.studentId = studentId;
-    }
 
     public String getName() {
         return name;
@@ -47,8 +45,9 @@ public class StudentEntity {
     @Override
     public String toString() {
         return "StudentEntity{" +
-                "studentId=" + studentId +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
     }
 }
+*/

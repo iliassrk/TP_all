@@ -2,6 +2,7 @@ package ma.pfe.mappers;
 
 import ma.pfe.dtos.StudentDto;
 import ma.pfe.entities.StudentEntity;
+import ma.pfe.entities.StudentId;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,14 +13,18 @@ import java.util.stream.Collectors;
 public class StudentMapper {
     public StudentEntity convertToEntity (StudentDto dto){
         StudentEntity studentEntity = new StudentEntity();
-        studentEntity.setId(dto.getId());
+        StudentId studentId = new StudentId();
+        studentId.setId(dto.getId());
+        studentId.setCode(dto.getCode());
+        studentEntity.setStudentId(studentId);
         studentEntity.setName(dto.getName());
         return studentEntity;
 
     }
     public StudentDto convertToDto (StudentEntity ent){
         StudentDto studentDto = new StudentDto();
-        studentDto.setId(ent.getId());
+        studentDto.setId(ent.getStudentId().getId());
+        studentDto.setCode(ent.getStudentId().getCode());
         studentDto.setName(ent.getName());
         return studentDto;
     }
