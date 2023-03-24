@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService {
-    private final static Logger LOGGER = LoggerFactory.getLogger(StudentServiceImpl.class);
+    private static final  Logger LOGGER = LoggerFactory.getLogger(StudentServiceImpl.class);
 
     private StudentRepository studentRepository;
 
@@ -54,7 +54,6 @@ public class StudentServiceImpl implements StudentService {
     public List<StudentDto> selectAll() {
         LOGGER.debug("start methode selectAll");
         List<StudentEntity> l = studentRepository.findAll();
-        List<StudentDto> ld = studentMapper.convertToDtos(l);
-        return ld;
+        return studentMapper.convertToDtos(l);
     }
 }

@@ -9,6 +9,7 @@ public class StudentEntity {
 
     @EmbeddedId
     private StudentId studentId;
+    private Adresse adresse;
 
     @Column(name = "name_student")
     private String name;
@@ -18,7 +19,7 @@ public class StudentEntity {
             @AttributeOverride(name="rue",column = @Column(name = "rue_student")),
             @AttributeOverride(name="avenue",column = @Column(name = "avenue_student"))
     })
-    private Adresse adresse;
+
 
     public Adresse getAdresse() {
         return adresse;
