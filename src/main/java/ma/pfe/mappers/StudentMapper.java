@@ -25,7 +25,7 @@ public class StudentMapper {
         studentEntity.setName(dto.getName());
         return studentEntity;
 
-    }
+    }/*
     public StudentDto convertToDto (StudentEntity ent){
         StudentDto studentDto = new StudentDto();
         StudentId studentId = new StudentId();
@@ -52,12 +52,12 @@ public class StudentMapper {
             return new ArrayList<>();
         }
 
-    }*/
+    }
     public List<StudentDto> convertToDtos(List<StudentEntity> studentEntities) {
         if(studentEntities!=null&&!studentEntities.isEmpty()){
             return studentEntities.stream().map(studentEntity -> convertToDto(studentEntity)).collect(Collectors.toList());
         }else {
             return new ArrayList<>();
         }
-    }
+    }*/
 }
