@@ -1,7 +1,6 @@
 package ma.pfe.services;
 
 import ma.pfe.dtos.StudentDto;
-import ma.pfe.entities.StudentEntity;
 import ma.pfe.entities.StudentId;
 import ma.pfe.mappers.StudentMapper;
 import ma.pfe.repositories.StudentRepository;
@@ -28,17 +27,18 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Long save(StudentDto dto) {
         LOGGER.debug("start methode save");
-        StudentEntity e = studentMapper.convertToEntity(dto);
+        /*StudentEntity e = studentMapper.convertToEntity(dto);
         e = studentRepository.save(e);
-        return e.getStudentId().getId();
+        return e.getStudentId().getId();*/
+        return null;
     }
 
     @Override
     public Boolean update(StudentDto dto) {
         LOGGER.debug("start methode update");
-        StudentEntity e= studentMapper.convertToEntity(dto);
+        /*StudentEntity e= studentMapper.convertToEntity(dto);
         studentRepository.findById(e.getStudentId());
-        e = studentRepository.save(e);
+        e = studentRepository.save(e);*/
         return true;
     }
 
@@ -53,7 +53,8 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<StudentDto> selectAll() {
         LOGGER.debug("start methode selectAll");
-        List<StudentEntity> l = studentRepository.findAll();
-        return studentMapper.convertToDtos(l);
+        /*List<StudentEntity> l = studentRepository.findAll();
+        return studentMapper.convertToDtos(l);*/
+        return null;
     }
 }
