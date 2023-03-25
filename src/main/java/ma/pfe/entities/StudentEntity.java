@@ -49,7 +49,8 @@ public class StudentEntity {
     public String toString() {
         return "StudentEntity{" +
                 "studentId=" + studentId +
-                ", name='" + name + '\'' +
+                ", name='" + name +
+                ", adresse=" + adresse + '\'' +
                 '}';
     }
 }

@@ -1,13 +1,14 @@
 package ma.pfe.services;
 
 import ma.pfe.dtos.StudentDto;
+import ma.pfe.entities.StudentEntity;
 import ma.pfe.entities.StudentId;
 import ma.pfe.mappers.StudentMapper;
 import ma.pfe.repositories.StudentRepository;
+import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -16,29 +17,29 @@ public class StudentServiceImpl implements StudentService {
 
     private StudentRepository studentRepository;
 
-    private StudentMapper studentMapper;
+    private StudentMapper studentMapper= Mappers.getMapper(StudentMapper.class);
 
 
-    public StudentServiceImpl(StudentRepository studentRepository, StudentMapper studentMapper) {
+    public StudentServiceImpl(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
-        this.studentMapper = studentMapper;
+
     }
 
     @Override
     public Long save(StudentDto dto) {
         LOGGER.debug("start methode save");
-        /*StudentEntity e = studentMapper.convertToEntity(dto);
+        StudentEntity e = studentMapper.convertToEntity(dto);
         e = studentRepository.save(e);
-        return e.getStudentId().getId();*/
-        return null;
+        return e.getStudentId().getId();
+
     }
 
     @Override
     public Boolean update(StudentDto dto) {
         LOGGER.debug("start methode update");
-        /*StudentEntity e= studentMapper.convertToEntity(dto);
+        StudentEntity e= studentMapper.convertToEntity(dto);
         studentRepository.findById(e.getStudentId());
-        e = studentRepository.save(e);*/
+         studentRepository.save(e);
         return true;
     }
 
@@ -53,8 +54,8 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<StudentDto> selectAll() {
         LOGGER.debug("start methode selectAll");
-        /*List<StudentEntity> l = studentRepository.findAll();
-        return studentMapper.convertToDtos(l);*/
-        return null;
+        List<StudentEntity> l = studentRepository.findAll();
+        return studentMapper.convertToDtos(l);
+
     }
 }
