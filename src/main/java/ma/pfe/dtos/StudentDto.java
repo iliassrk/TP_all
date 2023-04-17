@@ -1,34 +1,33 @@
 package ma.pfe.dtos;
 
-import ma.pfe.entities.Adresse;
-import ma.pfe.entities.StudentId;
-
 import javax.persistence.EmbeddedId;
+import java.util.List;
 
 public class StudentDto {
 
     @EmbeddedId
-    private StudentId studentId;
-    private Adresse adresse;
+    private StudentIdDto studentId;
+    private AdresseDto adresse;
     private String name;
+    private NiveauDto niveau;
+    private List<CoursDto> courses;
 
-    public StudentId getStudentId() {
+
+    public StudentIdDto getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(StudentId studentId) {
+    public void setStudentId(StudentIdDto studentId) {
         this.studentId = studentId;
     }
 
-    public Adresse getAdresse() {
+    public AdresseDto getAdresse() {
         return adresse;
     }
 
-    public void setAdresse(Adresse adresse) {
+    public void setAdresse(AdresseDto adresse) {
         this.adresse = adresse;
     }
-
-
 
     public String getName() {
         return name;
@@ -38,12 +37,30 @@ public class StudentDto {
         this.name = name;
     }
 
+    public NiveauDto getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(NiveauDto niveau) {
+        this.niveau = niveau;
+    }
+
+    public List<CoursDto> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<CoursDto> courses) {
+        this.courses = courses;
+    }
+
     @Override
     public String toString() {
         return "StudentDto{" +
                 "studentId=" + studentId +
-                ", name='" + name +
-                ", adresse=" + adresse + '\'' +
+                ", adresse=" + adresse +
+                ", name='" + name + '\'' +
+                ", niveau=" + niveau +
+                ", courses=" + courses +
                 '}';
     }
 }

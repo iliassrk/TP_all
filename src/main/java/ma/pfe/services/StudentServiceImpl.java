@@ -1,8 +1,7 @@
 package ma.pfe.services;
 
 import ma.pfe.dtos.StudentDto;
-import ma.pfe.entities.StudentEntity;
-import ma.pfe.entities.StudentId;
+import ma.pfe.dtos.StudentIdDto;
 import ma.pfe.mappers.StudentMapper;
 import ma.pfe.repositories.StudentRepository;
 import org.mapstruct.factory.Mappers;
@@ -27,35 +26,33 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Long save(StudentDto dto) {
-        LOGGER.debug("start methode save");
-        StudentEntity e = studentMapper.convertToEntity(dto);
-        e = studentRepository.save(e);
-        return e.getStudentId().getId();
-
+        LOGGER.debug("Start Methode Save");
+        StudentDto studentDTO = studentMapper.convertToDto(studentRepository.save(studentMapper.convertToEntity(dto)));
+        return studentDTO.getStudentId().getId();
     }
 
     @Override
-    public Boolean update(StudentDto dto) {
-        LOGGER.debug("start methode update");
-        StudentEntity e= studentMapper.convertToEntity(dto);
-        studentRepository.findById(e.getStudentId());
-         studentRepository.save(e);
-        return true;
+    public Long update(StudentDto dto) {
+        LOGGER.debug("Start Methode update");
+        StudentDto studentDTO = studentMapper.convertToDto(studentRepository.save(studentMapper.convertToEntity(dto)));
+        return studentDTO.getStudentId().getId();
     }
 
-    @Override
-    public Boolean deleteById(Long id, String code) {
-        LOGGER.debug("start methode delete");
-        StudentId studentId = new StudentId(id,code);
-        studentRepository.deleteById(studentId);
+    public Boolean delete(StudentIdDto idCompos) {
+        LOGGER.debug("Start Methode delete");
+        studentRepository.deleteById(studentMapper.studentIdDtoToStudentId(idCompos));
         return true;
     }
 
     @Override
     public List<StudentDto> selectAll() {
-        LOGGER.debug("start methode selectAll");
-        List<StudentEntity> l = studentRepository.findAll();
-        return studentMapper.convertToDtos(l);
-
+        LOGGER.debug("Start Methode selectAll");
+        return studentMapper.convertToDtos(studentRepository.findAll());
     }
+
+    @Override
+    public StudentDto selectById(StudentIdDto idCompos) {
+        return  studentMapper.convertToDto(studentRepository.findById(studentMapper.studentIdDtoToStudentId(idCompos)).orElse(null));
+    }
+
 }
